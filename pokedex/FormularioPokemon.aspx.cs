@@ -12,11 +12,13 @@ namespace pokedex
 {
     public partial class FormularioPokemon : System.Web.UI.Page
     {
+        public bool confirmarEliminar { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
             try
             {
+                confirmarEliminar = false;
                 if (!IsPostBack)
                 {
                     ElementoNegocio negocio = new ElementoNegocio();
@@ -51,7 +53,7 @@ namespace pokedex
 
 
                 }
-                    
+
             }
             catch (Exception)
             {
@@ -104,7 +106,35 @@ namespace pokedex
             {
                 Response.Redirect("ListaPokemons.aspx", false);
             }
-            
+
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            confirmarEliminar = true;
+        }
+
+        protected void btnConfirmarEliminacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirmarEliminacion.Checked)
+                {
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    negocio.eliminar(int.Parse(txtId.Text));
+                    Response.Redirect("ListaPokemons.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            confirmarEliminar = false;
         }
     }
 }
