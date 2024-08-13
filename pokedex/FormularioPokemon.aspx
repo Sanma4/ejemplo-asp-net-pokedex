@@ -34,6 +34,12 @@
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-dark" OnClick="btnAceptar_Click" />
                 <a href="ListaPokemons.aspx" class="btn btn-outline-dark">Cancelar</a>
+                <%if (Desactivar)
+            {%>
+                <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar" cssClass="btn btn-warning" onClick="btnDesactivar_Click"     />
+
+            <%}
+                            %>
             </div>
         </div>
 
@@ -60,7 +66,11 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div>
+                        <%if (eliminar)
+                        {%>
                         <asp:Button ID="btnEliminar" runat="server" Text="Eliminar"  CssClass="btn btn-danger" onClick="btnEliminar_Click"/>
+          <%            }
+                          %>
                         <%if (confirmarEliminar)
                         {%>
                         <asp:CheckBox Text="Confirme su eliminación" runat="server" ID="chkConfirmarEliminacion" />

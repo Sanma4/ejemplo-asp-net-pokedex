@@ -13,12 +13,16 @@ namespace pokedex
     public partial class FormularioPokemon : System.Web.UI.Page
     {
         public bool confirmarEliminar { get; set; }
+        public bool eliminar { get; set; }
+        public bool Desactivar { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
             try
             {
+                eliminar = false;
                 confirmarEliminar = false;
+                Desactivar = false;
                 if (!IsPostBack)
                 {
                     ElementoNegocio negocio = new ElementoNegocio();
@@ -41,6 +45,10 @@ namespace pokedex
                     PokemonNegocio negocio = new PokemonNegocio();
                     Pokemon seleccionado = (negocio.listar(id))[0];
 
+                    //Guardo el pokemon en session
+                    Session.Add("pokeSeleccionado", seleccionado);
+
+                    //Precargar elementos
                     txtId.Text = id;
                     txtNombre.Text = seleccionado.Nombre;
                     txtNumero.Text = seleccionado.Numero.ToString();
@@ -51,13 +59,17 @@ namespace pokedex
                     ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
                     txtUrlImg_TextChanged(sender, e);
 
+                    //Muestro los botones cuando se pulse el btn acciones
+                    eliminar = true;
+                    Desactivar = true;
 
+                    if (!seleccionado.Activo)
+                        btnDesactivar.Text = "Reactivar";
                 }
 
             }
             catch (Exception)
             {
-
                 Session.Add("error", false);
                 throw;
             }
@@ -94,8 +106,6 @@ namespace pokedex
                 {
                     negocio.agregarSP(nuevo);
                 }
-
-
             }
             catch (Exception)
             {
@@ -106,7 +116,6 @@ namespace pokedex
             {
                 Response.Redirect("ListaPokemons.aspx", false);
             }
-
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
@@ -135,6 +144,22 @@ namespace pokedex
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             confirmarEliminar = false;
+        }
+
+        protected void btnDesactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PokemonNegocio negocio = new PokemonNegocio();
+                Pokemon seleccionado = (Pokemon)Session["pokeSeleccionado"];
+                negocio.eliminarLogico(seleccionado.Id, !seleccionado.Activo);
+                Response.Redirect("ListaPokemons.aspx",false);
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
         }
     }
 }
