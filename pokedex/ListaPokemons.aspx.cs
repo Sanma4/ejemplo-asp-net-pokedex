@@ -21,7 +21,7 @@ namespace pokedex
                 if (!IsPostBack)
                 {
                     PokemonNegocio negocio = new PokemonNegocio();
-                    Session.Add("listaPokemons", negocio.listarSP());
+                    Session.Add("listaPokemons", negocio.listar());
                     dgvPokemons.DataSource = Session["listaPokemons"];
                     dgvPokemons.DataBind();
                 }

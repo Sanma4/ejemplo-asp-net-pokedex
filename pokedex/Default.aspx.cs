@@ -15,10 +15,10 @@ namespace pokedex
         protected void Page_Load(object sender, EventArgs e)
         {
             PokemonNegocio negocio = new PokemonNegocio();
-            ListaPokemon = negocio.listarSP();
+            ListaPokemon = negocio.listar();
             if (!IsPostBack)
             {
-                repRepetidor.DataSource = negocio.listarSP();
+                repRepetidor.DataSource = negocio.listar();
                 repRepetidor.DataBind();
             }
         }

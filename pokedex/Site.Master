@@ -20,15 +20,24 @@
                         <a class="nav-link active" aria-current="page" href="Default.aspx">Home</a>
 
                     </li>
-                    <%if ((Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).TipoUsuario == dominio.TipoUsuario.ADMIN)){  %>
+                    <%if ((Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).TipoUsuario == dominio.TipoUsuario.ADMIN))
+                        {  %>
                     <li class="nav-item">
                         <a class="nav-link" href="ListaPokemons.aspx">Lista de Pokemons</a>
                     </li>
                     <%} %>
                 </ul>
-                <form class="d-flex" role="search">
-                    <a class="btn btn-outline-success" href="Login.aspx">Login</a>
-                </form>
+                <div class="">
+                    <form class="d-flex me-2">
+                        <a class="btn btn-outline-success" href="Login.aspx">Login</a>
+                    </form>
+                </div>
+                <div>
+
+                    <form class="d-flex m-auto">
+                        <a class="btn btn-outline-primary" href="Register.aspx">Registrarse</a>
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
