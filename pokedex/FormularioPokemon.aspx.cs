@@ -99,12 +99,12 @@ namespace pokedex
                 if (Request.QueryString["id"] != null)
                 {
                     nuevo.Id = int.Parse(txtId.Text);
-                    negocio.modificarSP(nuevo);
+                    negocio.modificar(nuevo);
 
                 }
                 else
                 {
-                    negocio.agregarSP(nuevo);
+                    negocio.agregar(nuevo);
                 }
             }
             catch (Exception)

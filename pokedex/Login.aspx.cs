@@ -17,20 +17,22 @@ namespace pokedex
         }
         protected void btnEntrar_Click(object sender, EventArgs e)
         {
-            Usuario usuario;
-            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            Trainee trainee = new Trainee();
+            TraineeNegocio negocio = new TraineeNegocio();
             try
             {
-                usuario = new Usuario(txtUser.Text, txtPass.Text, false);
-                if (negocio.Loguear(usuario))
+                trainee.Email = txtUser.Text;
+                trainee.Pass = txtPass.Text;
+                if (negocio.Loguear(trainee))
                 {
-                    Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+                    Session.Add("trainee", trainee);
+                    Response.Redirect("MiPerfil.aspx", false);
                 }
                 else
                 {
                     Session.Add("error", "user o contraseña incorrecta");
-                    Response.Redirect("Error.aspx", false);
+                    Response.Redirect("error.aspx", false);
                 }
             }
             catch (Exception ex)

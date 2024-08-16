@@ -16,20 +16,16 @@ namespace pokedex
         protected void Page_Load(object sender, EventArgs e)
         {
             filtroAvanzado = chkFiltroAvanzado.Checked;
-            if ((Session["usuario"] != null && ((dominio.Usuario)Session["usuario"]).TipoUsuario == dominio.TipoUsuario.ADMIN))
+            if (!Seguridad.Admin(Session["trainee"]))
             {
-                if (!IsPostBack)
-                {
-                    PokemonNegocio negocio = new PokemonNegocio();
-                    Session.Add("listaPokemons", negocio.listar());
-                    dgvPokemons.DataSource = Session["listaPokemons"];
-                    dgvPokemons.DataBind();
-                }
-            }
-            else
-            {
-                Session.Add("error", "Necesitas permisos para acceder a esta página. Si crees que se trata de un error consulta con el servicio tecnico.");
+                Session.Add("error", "No tienes permisos para acceder a este sitio.");
                 Response.Redirect("Error.aspx", false);
+            }else if (!IsPostBack)
+            {
+                PokemonNegocio negocio = new PokemonNegocio();
+                Session.Add("listaPokemons", negocio.listar());
+                dgvPokemons.DataSource = Session["listaPokemons"];
+                dgvPokemons.DataBind();
             }
 
         }

@@ -26,9 +26,11 @@ namespace pokedex
                 {
                     usuario.Email = txtEmail.Text;
                     usuario.Pass = txtContraseña.Text;
-                    int id = negocio.AgregarTrainee(usuario);
+                    usuario.Id = negocio.AgregarTrainee(usuario);
+                    Session.Add("trainee", usuario);
                     EmailService emailService = new EmailService();
                     emailService.armarCorreo(txtEmail.Text, "Bienvenido a la Pokedex Web", "Bienvenido entrenador, ya eres parte de la pokedex web y podras cumplir muchas funciones. Descubrelas interactuando en nuestra página. Atentamente equipo de administación");
+                    emailService.enviarEmail();
                     Response.Redirect("Default.aspx", false);
                 }
                 else

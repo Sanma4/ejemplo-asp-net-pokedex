@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col-6">
+            <h2 >Entra a tu perfil de entrenador</h2>
             <form>
                 <div class="mb-3">
                     <label for="txtUser" class="form-label">Email</label>
