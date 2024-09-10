@@ -22,6 +22,11 @@ namespace pokedex
             TraineeNegocio negocio = new TraineeNegocio();
             try
             {
+                if(Validacion.validarTextoVacio(txtUser) || Validacion.validarTextoVacio(txtPass))
+                {
+                    Session.Add("error", "Debes completar los campos, en caso de que consideres que sea un error contacta con el servicio técnico.");
+                    Response.Redirect("Error.aspx");
+                }
                 trainee.Email = txtUser.Text;
                 trainee.Pass = txtPass.Text;
                 if (negocio.Loguear(trainee))
@@ -35,10 +40,11 @@ namespace pokedex
                     Response.Redirect("error.aspx", false);
                 }
             }
+            catch (System.Threading.ThreadAbortException) { }
             catch (Exception ex)
             {
-                Session.Add("error", ex.ToString());
-                Response.Redirect("Error.aspx", false);
+                Session.Add("error", Seguridad.ManejoError(ex));
+                Response.Redirect("Error.aspx");
             }
         }
     }

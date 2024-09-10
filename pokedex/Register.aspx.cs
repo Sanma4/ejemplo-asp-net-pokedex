@@ -41,8 +41,8 @@ namespace pokedex
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                Response.Redirect("Error.aspx", false);
+                Session.Add("error", Seguridad.ManejoError(ex));
+                Response.Redirect("Error.aspx");
             }
 
         }

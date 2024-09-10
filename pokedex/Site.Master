@@ -45,7 +45,6 @@
 
                     <a href="MiPerfil.aspx">
                         <asp:Image ID="imgPerfil" Style="height: 40px; width: 40px; border-radius: 50%;"
-                            ImageUrl="https://simg.nicepng.com/png/small/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png"
                             runat="server" />
                     </a>
                 </div>

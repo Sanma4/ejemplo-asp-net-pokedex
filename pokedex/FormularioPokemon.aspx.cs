@@ -68,10 +68,10 @@ namespace pokedex
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Session.Add("error", false);
-                throw;
+                Session.Add("error", Seguridad.ManejoError(ex));
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -107,10 +107,10 @@ namespace pokedex
                     negocio.agregar(nuevo);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Response.Redirect("error");
-                throw;
+                Session.Add("error", Seguridad.ManejoError(ex));
+                Response.Redirect("Error.aspx");
             }
             finally
             {
@@ -136,8 +136,8 @@ namespace pokedex
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
-                throw;
+                Session.Add("error", Seguridad.ManejoError(ex));
+                Response.Redirect("Error.aspx");
             }
         }
 
@@ -157,8 +157,8 @@ namespace pokedex
             }
             catch (Exception ex)
             {
-
-                Session.Add("error", ex);
+                Session.Add("error", Seguridad.ManejoError(ex));
+                Response.Redirect("Error.aspx");
             }
         }
     }

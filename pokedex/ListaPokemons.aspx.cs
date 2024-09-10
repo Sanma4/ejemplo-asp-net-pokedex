@@ -73,8 +73,7 @@ namespace pokedex
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
-                throw;
+                Session.Add("error", Seguridad.ManejoError(ex));
             }
         }
 

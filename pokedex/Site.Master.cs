@@ -1,4 +1,5 @@
-﻿using negocio;
+﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,18 @@ namespace pokedex
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is Login || Page is Register || Page is Default ))
+            imgPerfil.ImageUrl = "https://simg.nicepng.com/png/small/202-2022264_usuario-annimo-usuario-annimo-user-icon-png-transparent.png";
+            
+            if (!(Page is Login || Page is Register || Page is Default || Page is Error))
             {
                 if (!Seguridad.SessionIniciada(Session["trainee"]))
                     Response.Redirect("Login.aspx", false);
+                else
+                {
+                    Trainee user = (Trainee)Session["trainee"];
+                    if(!string.IsNullOrEmpty(user.Imagen))
+                        imgPerfil.ImageUrl = "~/Images/" + user.Imagen;
+                }
             }
         }
 

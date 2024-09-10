@@ -23,5 +23,10 @@ namespace negocio
             Trainee trainee = user != null ? (Trainee)user : null;
             return trainee != null ? trainee.admin : false;
         }
+
+        public static string ManejoError(object ex)
+        {
+            return ex.ToString();
+        }
     }
 }

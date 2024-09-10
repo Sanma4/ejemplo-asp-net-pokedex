@@ -19,10 +19,6 @@
                 <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                </ContentTemplate>
-            </asp:UpdatePanel>
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Tipo</label>
                 <asp:DropDownList ID="ddlTipo" runat="server" CssClass="form-select"></asp:DropDownList>
