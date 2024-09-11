@@ -36,6 +36,10 @@ namespace pokedex
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 Trainee user = (Trainee)Session["trainee"];
                 TraineeNegocio negocio = new TraineeNegocio();
                 if (txtImg.PostedFile.FileName != "")

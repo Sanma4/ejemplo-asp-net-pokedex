@@ -58,6 +58,12 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+
     </form>
 </body>
+    <hr />
+<footer>
+    <h5 style="text-align:center; font-size:20px;">DERECHOS RESERVADOS</h5>
+    <h6 style="text-align:center; font-size:10px;">Desing by Sanma</h6>
+</footer>
 </html>

@@ -82,6 +82,9 @@ namespace pokedex
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
             PokemonNegocio negocio = new PokemonNegocio();
             Pokemon nuevo = new Pokemon();
             try

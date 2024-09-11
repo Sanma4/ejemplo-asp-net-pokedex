@@ -17,16 +17,14 @@ namespace pokedex
         }
         protected void btnEntrar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
 
             Trainee trainee = new Trainee();
             TraineeNegocio negocio = new TraineeNegocio();
             try
             {
-                if(Validacion.validarTextoVacio(txtUser) || Validacion.validarTextoVacio(txtPass))
-                {
-                    Session.Add("error", "Debes completar los campos, en caso de que consideres que sea un error contacta con el servicio técnico.");
-                    Response.Redirect("Error.aspx");
-                }
                 trainee.Email = txtUser.Text;
                 trainee.Pass = txtPass.Text;
                 if (negocio.Loguear(trainee))

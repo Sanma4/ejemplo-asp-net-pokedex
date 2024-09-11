@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormularioPokemon.aspx.cs" Inherits="pokedex.FormularioPokemon" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .validacion{
+            color:red;
+            font-size: 12px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -13,19 +19,26 @@
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Debes ponerle un nombre" ControlToValidate="txtNombre" runat="server" />
             </div>
             <div class="mb-3">
                 <label for="txtNumero" class="form-label">Número</label>
                 <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Debes cargar el número" ControlToValidate="txtNumero" runat="server" />
+            </div>
+            <div>
+                <asp:RegularExpressionValidator CssClass="validacion" ErrorMessage="Solo numeros" ValidationExpression="^[0-9]+$" ControlToValidate="txtNumero" runat="server" />
             </div>
 
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Tipo</label>
                 <asp:DropDownList ID="ddlTipo" runat="server" CssClass="form-select"></asp:DropDownList>
+                <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Selecciona un tipo" ControlToValidate="ddlTipo" runat="server" />
             </div>
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Debilidad</label>
                 <asp:DropDownList ID="ddlDebilidad" runat="server" CssClass="form-select"></asp:DropDownList>
+                <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="Selecciona una debilidad" ControlToValidate="ddlDebilidad" runat="server" />
             </div>
             <div class="mb-3">
                 <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-dark" OnClick="btnAceptar_Click" />

@@ -1,36 +1,45 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MiPerfil.aspx.cs" Inherits="pokedex.Mi_Perfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .validacion {
+            color: red;
+            font-size: 12px;
+        }
+        .back{
+            background-color: #DEDFE5;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col">
-            <div class="card text-center border-secondary">
-                <div class="card-header border-secondary">
+            <div class="card text-center border-secondary back">
+                <div class="card-header border-secondary back">
                     MI PERFIL
                 </div>
-                <div class="card-body ">
-                    <div class="col ">
+                <div class="card-body back">
+                    <div class="col">
                         <form>
                             <div class="mb-3 text-start ">
                                 <label for="txtEmail" class="form-label">Email</label>
-                                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control border-secondary"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div class="mb-3 text-start ">
                                 <label for="txtNombre" class="form-label">Nombre</label>
-                                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control border-secondary"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator CssClass="validacion" ErrorMessage="El nombre es requerido" ControlToValidate="txtNombre" runat="server" />
                             </div>
                             <div class="mb-3 text-start">
                                 <label for="txtApellido" class="form-label">Apellido</label>
-                                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control border-secondary"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control"></asp:TextBox>
                             </div>
                             <div class="mb-3 text-start">
                                 <label for="txtApellido" class="form-label">Fecha de Nacimiento</label>
-                                <asp:TextBox runat="server" ID="txtFechaNacimiento" type="date" CssClass="form-control border-secondary"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtFechaNacimiento" type="date" CssClass="form-control"></asp:TextBox>
                             </div>
                         </form>
                     </div>
-
 
                     <div class="col-6">
                         <div class="mb-3 text-start">

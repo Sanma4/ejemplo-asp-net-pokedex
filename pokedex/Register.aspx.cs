@@ -18,6 +18,10 @@ namespace pokedex
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
+
             Trainee usuario = new Trainee();
             TraineeNegocio negocio = new TraineeNegocio();
             try
